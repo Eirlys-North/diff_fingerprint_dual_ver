@@ -7,7 +7,7 @@ from collections import defaultdict, Counter
 def get_dataset(dataset, batch_size=256, augment=True, role="defender", get_type="loader"):
     assert dataset in ["mnist", "kmnist"], "Only 'mnist' and 'kmnist' are supported in this version."
 
-    # 设置 MNIST/KMNIST 的 transform
+
     if augment:
         transform_train = transforms.Compose([
             transforms.RandomCrop(28, padding=4),
@@ -35,7 +35,7 @@ def get_dataset(dataset, batch_size=256, augment=True, role="defender", get_type
             root="./data", train=False, download=True, transform=transform_test
         )
 
-        # 使用 label 分类后，平均划分 attacker / defender
+
         data, targets = full_train.data, full_train.targets
         indices_per_class = {i: [] for i in range(10)}
         for idx, label in enumerate(targets):
