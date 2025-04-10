@@ -4,7 +4,7 @@ import torch.nn.functional as F
 import torchvision.models as models
 import sys
 
-# 各模块导入
+
 from . import (
     conv3,
     lenet,
@@ -19,7 +19,6 @@ from .cifar10_models import resnet18, vgg13_bn, vgg16_bn
 from datasets import get_nclasses
 
 
-# 用于替代全连接层或中间层的占位模块
 class Identity(nn.Module):
     def __init__(self):
         super(Identity, self).__init__()
@@ -28,7 +27,6 @@ class Identity(nn.Module):
         return x
 
 
-# 模型字典
 model_dict = {
     "conv3": conv3.conv3,
     "conv3_mnist": conv3_mnist.conv3_mnist,
@@ -43,7 +41,6 @@ model_dict = {
     "vgg16_bn": vgg16_bn,
 }
 
-# 通道 & 图像尺寸设置（用于生成器等）
 gen_channels_dict = {
     "mnist": 1,
     "fashionmnist": 1,
