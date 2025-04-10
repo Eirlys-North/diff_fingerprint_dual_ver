@@ -11,8 +11,8 @@ from datasets import get_dataset
 
 # ==== Config ====
 BATCH_SIZE = 256
-EPOCH_MULTI = 50    # fragile 模型训练轮数
-EPOCH_SINGLE = 100  # pirated 模型训练轮数
+EPOCH_MULTI = 50    
+EPOCH_SINGLE = 100  
 SAVE_DIR = './trained_models/finetune'
 LOG_DIR = './logs/finetune'
 PRETRAINED_PATH = './pretrained_models/teacher_model.pth'
@@ -35,7 +35,7 @@ def finetune_model(teacher, train_loader, test_loader, mode="single", finetune_s
     best_acc = 0.0
     loss_func = nn.CrossEntropyLoss()
 
-    # 设置学习率：fragile 用 1e-4，pirated 用 5e-4
+
     if finetune_scope == 'all':
         lr = 1e-4 if mode == "multi" else 5e-4
         optimizer = optim.Adam(teacher.parameters(), lr=lr)
@@ -94,7 +94,6 @@ if __name__ == "__main__":
     # Load dataset
     train_loader, test_loader = get_dataset("mnist", BATCH_SIZE, augment=True, role="attacker")
 
-    # === Mode 1: Fragile Finetune - 20个模型，前10个训练全部层，后10个只微调最后层 ===
     for i in range(20):
         teacher = get_model("lenet", "mnist", False)
         teacher.load_state_dict(torch.load(PRETRAINED_PATH))
@@ -108,7 +107,6 @@ if __name__ == "__main__":
         logger.info(f"[FRAGILE] Model {i} completed, Best Accuracy: {acc:.2f}%")
         print(f"Fragile model {i} best accuracy: {acc:.2f}%")
 
-    # === Mode 2: Pirated Finetune - 单个模型，训练所有层，保存每 5 epoch ===
     pirated_teacher = get_model("lenet", "mnist", False)
     pirated_teacher.load_state_dict(torch.load(PRETRAINED_PATH))
 
