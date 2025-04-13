@@ -10,7 +10,6 @@ import h5py
 from script import DDPM, ContextUnet
 from models import get_model
 
-# ==== 配置 ====
 device = "cuda:0"
 n_feat = 256
 n_T = 500
@@ -21,13 +20,12 @@ save_path = "./data/generate_DiffFP_boundary_100.h5"
 teacher_ckpt = "./pretrained_models/teacher_model.pth"
 ddpm_ckpt = "./diffusion/model_19half.pth"
 
-# ==== 教师模型 ====
 teacher = get_model("lenet", "mnist", False)
 teacher.load_state_dict(torch.load(teacher_ckpt))
 teacher = teacher.to(device)
 teacher.eval()
 
-# ==== DDPM 模型 ====
+
 ddpm = DDPM(
     nn_model=ContextUnet(in_channels=1, n_feat=n_feat, n_classes=n_classes),
     betas=(1e-4, 0.02),
@@ -38,10 +36,10 @@ ddpm = DDPM(
 ddpm.load_state_dict(torch.load(ddpm_ckpt))
 ddpm.eval()
 
-# ==== Transform ====
+
 transform_test = transforms.Normalize(mean=(0.5,), std=(0.5,))
 
-# ==== 采样逻辑 ====
+
 all_images = []
 all_labels = []
 total = 0
@@ -78,7 +76,6 @@ while num < num_samples_needed:
 
 print(f"Total samples evaluated: {total}")
 
-# ==== 保存到 HDF5 ====
 all_images_np = torch.cat(all_images, dim=0).numpy()
 all_labels_np = np.array(all_labels)
 
