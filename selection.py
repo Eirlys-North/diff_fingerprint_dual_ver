@@ -18,7 +18,7 @@ lrate = 1e-4
 num_samples_needed = 100
 save_path = "./data/generate_DiffFP_boundary_100.h5"
 teacher_ckpt = "./pretrained_models/teacher_model.pt"
-ddpm_ckpt = "./diffusion/model_19half.pth"
+ddpm_ckpt = "./diffusion/model_19.pth"
 
 teacher = get_model("lenet", "mnist", False)
 teacher.load_state_dict(torch.load(teacher_ckpt))
