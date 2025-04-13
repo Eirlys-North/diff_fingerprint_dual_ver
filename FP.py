@@ -18,7 +18,7 @@ BATCH_SIZE = 256
 PRUNE_RATIO = 0.90
 SAVE_DIR = './trained_models/fine_pruning'
 LOG_DIR = './logs/fine_pruning'
-PRETRAINED_PATH = './pretrained_models/teacher_model.pth'
+PRETRAINED_PATH = './pretrained_models/teacher_model.pt'
 
 # ==== Logging ====
 os.makedirs(SAVE_DIR, exist_ok=True)
