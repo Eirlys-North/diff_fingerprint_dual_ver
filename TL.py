@@ -12,7 +12,7 @@ from datasets import get_dataset
 BATCH_SIZE = 256
 EPOCH = 50
 
-# Change this to your preferred model saving directory
+
 SAVE_DIR = './trained_models'
 LOG_DIR = './logs'
 
@@ -24,7 +24,7 @@ def train_student_model(iter_idx, teacher_model, train_loader, log_dir):
 
     logger = logging.getLogger(f'TL_{iter_idx}')
     logger.setLevel(logging.DEBUG)
-    logger.handlers = []  # Clear any existing handlers
+    logger.handlers = []  
     console_handler = logging.StreamHandler()
     timeticks = time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime())
     file_handler = logging.FileHandler(os.path.join(log_dir, f'train_log_{iter_idx}_{timeticks}.log'))
@@ -54,13 +54,12 @@ if __name__ == "__main__":
     os.makedirs(SAVE_DIR, exist_ok=True)
     os.makedirs(LOG_DIR, exist_ok=True)
 
-    # Change model and dataset name as needed
     model_name = "lenet"
     dataset_name = "kmnist"
 
     teacher_model = get_model(model_name, dataset_name, pretrained=False)
-    # Load pretrained weights from a user-specified path
-    pretrained_path = "./pretrained_models/teacher_model.pth"
+
+    pretrained_path = "./pretrained_models/teacher_model.pt"
     teacher_model.load_state_dict(torch.load(pretrained_path))
     teacher_model.eval()
 
