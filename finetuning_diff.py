@@ -72,10 +72,6 @@ def run_ablation():
             'lambda_mse': 1.0, 'lambda_rec': 1.0, 'lambda_entropy': 0.1, 'lambda_margin': 0.15,
             'lambda_feature': 0.0, 'lambda_grad': 0.01, 'lambda_cls': 0.001
         },
-        "no_grad": {
-            'lambda_mse': 1.0, 'lambda_rec': 1.0, 'lambda_entropy': 0.1, 'lambda_margin': 0.15,
-            'lambda_feature': 0.05, 'lambda_grad': 0.0, 'lambda_cls': 0.001
-        },
         "full": {
             'lambda_mse': 1.0, 'lambda_rec': 1.0, 'lambda_entropy': 0.1, 'lambda_margin': 0.15,
             'lambda_feature': 0.05, 'lambda_grad': 0.01, 'lambda_cls': 0.001
