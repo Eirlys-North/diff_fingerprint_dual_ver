@@ -16,7 +16,7 @@ BATCH_SIZE = 128
 EPOCH = 10
 SAVE_DIR = './trained_models'
 LOG_DIR = './logs'
-PRETRAINED_PATH = './pretrained_models/teacher_model.pth'
+PRETRAINED_PATH = './pretrained_models/teacher_model.pt'
 
 def reset(model_type):
     if model_type == 'resnet':
