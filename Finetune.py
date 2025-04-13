@@ -15,7 +15,7 @@ EPOCH_MULTI = 50
 EPOCH_SINGLE = 100  
 SAVE_DIR = './trained_models/finetune'
 LOG_DIR = './logs/finetune'
-PRETRAINED_PATH = './pretrained_models/teacher_model.pth'
+PRETRAINED_PATH = './pretrained_models/teacher_model.pt'
 
 # ==== Setup logging ====
 os.makedirs(SAVE_DIR, exist_ok=True)
